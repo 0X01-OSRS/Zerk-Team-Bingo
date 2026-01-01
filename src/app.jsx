@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Download } from "lucide-react";
 import html2canvas from "html2canvas";
-import "./app.css";
+import './app.css'
 
 const App = () => {
   const [clickedSquares, setClickedSquares] = useState(new Set());
   const [hoveredSquare, setHoveredSquare] = useState(null);
+  const [isRolling, setIsRolling] = useState(false);
+  const [selectedTile, setSelectedTile] = useState(null);
   const gridRef = useRef(null);
+  const rollIntervalRef = useRef(null);
 
   // Load state from URL on mount
   useEffect(() => {
@@ -279,7 +282,7 @@ const App = () => {
     title: "Skills Master",
     text: (
       <ul>
-        <li>Choose 3:</li>
+        <li style={{color:'white'}}>Choose 3:</li>
         <li>Fletching knife</li>
         <li>Tackle box</li>
         <li>Fish barrel</li>
@@ -361,8 +364,6 @@ const App = () => {
     if (!gridRef.current) return;
 
     try {
-      // const html2canvas = (await import('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm')).default;
-
       const canvas = await html2canvas(gridRef.current, {
         backgroundColor: "#0F0F0F",
         scale: 2,
@@ -379,7 +380,47 @@ const App = () => {
     }
   };
 
+  const rollRandomTile = () => {
+    // Get all uncompleted tiles
+    const uncompletedTiles = bingoItems
+      .map((_, index) => index)
+      .filter(index => !clickedSquares.has(index));
 
+    if (uncompletedTiles.length === 0) {
+      alert("All tiles are already completed!");
+      return;
+    }
+
+    setIsRolling(true);
+    setSelectedTile(null);
+
+    let rollCount = 0;
+    const maxRolls = 30;
+    const baseSpeed = 50;
+
+    const roll = () => {
+      rollCount++;
+      
+      const randomIndex = uncompletedTiles[Math.floor(Math.random() * uncompletedTiles.length)];
+      setSelectedTile(randomIndex);
+      setHoveredSquare(randomIndex);
+
+      if (rollCount >= maxRolls) {
+        clearInterval(rollIntervalRef.current);
+        
+        const finalTile = uncompletedTiles[Math.floor(Math.random() * uncompletedTiles.length)];
+        setSelectedTile(finalTile);
+        setHoveredSquare(finalTile);
+        setIsRolling(false);
+      } else if (rollCount > maxRolls - 10) {
+        clearInterval(rollIntervalRef.current);
+        const newSpeed = baseSpeed + (rollCount - (maxRolls - 10)) * 30;
+        rollIntervalRef.current = setInterval(roll, newSpeed);
+      }
+    };
+
+    rollIntervalRef.current = setInterval(roll, baseSpeed);
+  };
 
   return (
     <div className="min-h-screen p-8" style={{ backgroundColor: "#2E2C29" }}>
@@ -405,45 +446,44 @@ const App = () => {
               borderStyle: "solid",
               background: "url(./board.png)",
               backgroundSize: "contain",
-              // gap:'1%'
             }}
           >
             {bingoItems.map((item, index) => {
-              const Icon = item.icon;
               const isClicked = clickedSquares.has(index);
 
               return (
                 <div
                   key={index}
-                  className="relative aspect-square  cursor-pointer transition-all"
+                  className="relative aspect-square cursor-pointer transition-all"
                   style={{
-                    // backgroundColor: "#46433A",
                     borderWidth: "2px",
-                    borderColor: isClicked ? "#E6A519" : "transparent",
+                    borderColor: isClicked ? "#E6A519" : (selectedTile === index) ? "#FF0000" : "transparent",
                     borderStyle: "solid",
+                    boxShadow: (selectedTile === index) ? "0 0 20px #FF0000" : "none",
+                    transform: (selectedTile === index && isRolling) ? "scale(1.1)" : "scale(1)",
+                    zIndex: (selectedTile === index && isRolling) ? "2" : "unset",
                   }}
                   onClick={() => toggleSquare(index)}
                   onMouseEnter={(e) => {
-                    setHoveredSquare(index);
-                    if (!isClicked) {
-                      e.currentTarget.style.borderColor = "#E6A519";
+                    if (!isRolling) {
+                      setHoveredSquare(index);
+                      if (!isClicked) {
+                        e.currentTarget.style.borderColor = "#E6A519";
+                      }
                     }
                   }}
                   onMouseLeave={(e) => {
-                    setHoveredSquare(null);
-                    if (!isClicked) {
-                      e.currentTarget.style.borderColor = "transparent";
+                    if (!isRolling) {
+                      setHoveredSquare(null);
+                      if (!isClicked) {
+                        e.currentTarget.style.borderColor = "transparent";
+                      }
                     }
                   }}
                 >
-                  {
-                    /* <div className="absolute inset-0 flex items-center justify-center">
-                    <Icon className={`w-12 h-12 ${item.color}`} />
-                  </div> */
-                  }
                   {isClicked && (
                     <div
-                      className="absolute inset-0  flex items-center justify-center"
+                      className="absolute inset-0 flex items-center justify-center"
                       style={{ backgroundColor: "rgba(0, 255, 0, 0.6)" }}
                     >
                       <div className="text-4xl" style={{ color: "#0F0F0F" }}>
@@ -457,7 +497,7 @@ const App = () => {
           </div>
 
           <div
-            className=" p-6 flex items-center justify-center"
+            className="p-6 flex items-center justify-center"
             style={{
               backgroundColor: "#46433A",
               borderWidth: "2px",
@@ -501,8 +541,27 @@ const App = () => {
         </div>
         <div className="flex justify-center mt-6">
           <button
+            onClick={rollRandomTile}
+            disabled={isRolling}
+            className="flex items-center gap-2 font-bold py-2 px-6 mr-4 transition-colors"
+            style={{
+              backgroundColor: isRolling ? "#666" : "#FF6B35",
+              color: "#FFFFFF",
+              cursor: isRolling ? "not-allowed" : "pointer",
+              opacity: isRolling ? 0.6 : 1,
+            }}
+            onMouseEnter={(e) => {
+              if (!isRolling) e.target.style.backgroundColor = "#FF8555";
+            }}
+            onMouseLeave={(e) => {
+              if (!isRolling) e.target.style.backgroundColor = "#FF6B35";
+            }}
+          >
+            🎲 {isRolling ? "Rolling..." : "Roll Random Tile"}
+          </button>
+          <button
             onClick={saveAsImage}
-            className="flex items-center gap-2 font-bold py-2 px-6  transition-colors"
+            className="flex items-center gap-2 font-bold py-2 px-6 transition-colors"
             style={{
               backgroundColor: "#E6A519",
               color: "#0F0F0F",
