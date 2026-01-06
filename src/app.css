@@ -29,3 +29,9 @@
   font-style: italic;
   list-style-type: none;
 }
+
+.tile-icon {
+  object-fit: contain;
+  max-width: 64px;
+  max-height: 64px;
+}

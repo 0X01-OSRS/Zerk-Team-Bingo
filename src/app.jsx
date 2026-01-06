@@ -583,10 +583,10 @@ const App = () => {
                       ? "2"
                       : "unset",
                     backgroundColor: "#46433A",
-                    backgroundImage: "url('" + item.image + "')",
-                    backgroundSize: "min(60%, 60px) auto",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center center",
+                    // backgroundImage: "url('" + item.image + "')",
+                    // backgroundSize: "min(60%, 60px) auto",
+                    // backgroundRepeat: "no-repeat",
+                    // backgroundPosition: "center center",
                   }}
                   onClick={() => toggleSquare(index)}
                   onMouseEnter={(e) => {
@@ -615,6 +615,7 @@ const App = () => {
                   >
                     {item.index}
                   </div>
+                  <img className="tile-icon" src={item.image}></img>
                   {isClicked && (
                     <div
                       className="absolute inset-0 flex items-center justify-center"
