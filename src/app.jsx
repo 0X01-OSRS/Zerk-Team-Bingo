@@ -14,7 +14,8 @@ const App = () => {
 
   const bingoItems = [
     {
-      index: 1, image: './tiles/tile1.png',
+      index: 1,
+      image: "./tiles/tile1.png",
       title: "Venomous Jeweler",
       text: (
         <ul>
@@ -25,7 +26,8 @@ const App = () => {
       ),
     },
     {
-      index: 2, image: './tiles/tile2.png',
+      index: 2,
+      image: "./tiles/tile2.png",
       title: "Catch These Hands",
       text: (
         <ul>
@@ -36,7 +38,8 @@ const App = () => {
       ),
     },
     {
-      index: 3, image: './tiles/tile3.png',
+      index: 3,
+      image: "./tiles/tile3.png",
       title: "Demonic Arsenal",
       text: (
         <ul>
@@ -47,7 +50,8 @@ const App = () => {
       ),
     },
     {
-      index: 4, image: './tiles/tile4.png',
+      index: 4,
+      image: "./tiles/tile4.png",
       title: "Eternal Love",
       text: (
         <ul>
@@ -58,7 +62,8 @@ const App = () => {
       ),
     },
     {
-      index: 5, image: './tiles/tile5.png',
+      index: 5,
+      image: "./tiles/tile5.png",
       title: "Triple Double",
       text: (
         <ul>
@@ -70,7 +75,8 @@ const App = () => {
       ),
     },
     {
-      index: 6, image: './tiles/tile6.png',
+      index: 6,
+      image: "./tiles/tile6.png",
       title: "Ranged Fortification",
       text: (
         <ul>
@@ -80,7 +86,8 @@ const App = () => {
       ),
     },
     {
-      index: 7, image: './tiles/tile7.png',
+      index: 7,
+      image: "./tiles/tile7.png",
       title: "Melee Fortification",
       text: (
         <ul>
@@ -90,7 +97,8 @@ const App = () => {
       ),
     },
     {
-      index: 8, image: './tiles/tile8.png',
+      index: 8,
+      image: "./tiles/tile8.png",
       title: "What Was That?",
       text: (
         <ul>
@@ -101,7 +109,8 @@ const App = () => {
       ),
     },
     {
-      index: 9, image: './tiles/tile9.png',
+      index: 9,
+      image: "./tiles/tile9.png",
       title: "The Lizard Sticker",
       text: (
         <ul>
@@ -111,7 +120,8 @@ const App = () => {
       ),
     },
     {
-      index: 10, image: './tiles/tile10.png',
+      index: 10,
+      image: "./tiles/tile10.png",
       title: "Theatre of Blood",
       text: (
         <ul>
@@ -120,7 +130,8 @@ const App = () => {
       ),
     },
     {
-      index: 11, image: './tiles/tile11.png',
+      index: 11,
+      image: "./tiles/tile11.png",
       title: "Hellhound's Heels",
       text: (
         <ul>
@@ -136,7 +147,8 @@ const App = () => {
       ),
     },
     {
-      index: 12, image: './tiles/tile12.png',
+      index: 12,
+      image: "./tiles/tile12.png",
       title: "Lord of the Bling",
       text: (
         <ul>
@@ -146,7 +158,8 @@ const App = () => {
       ),
     },
     {
-      index: 13, image: './tiles/tile13.png',
+      index: 13,
+      image: "./tiles/tile13.png",
       title: "Risk Assessment",
       text: (
         <ul>
@@ -162,7 +175,8 @@ const App = () => {
       ),
     },
     {
-      index: 14, image: './tiles/tile14.png',
+      index: 14,
+      image: "./tiles/tile14.png",
       title: "Lesser of Two Evils",
       text: (
         <ul>
@@ -173,7 +187,8 @@ const App = () => {
       ),
     },
     {
-      index: 15, image: './tiles/tile15.png',
+      index: 15,
+      image: "./tiles/tile15.png",
       title: "Chambers of Xeric",
       text: (
         <ul>
@@ -182,7 +197,8 @@ const App = () => {
       ),
     },
     {
-      index: 16, image: './tiles/tile16.png',
+      index: 16,
+      image: "./tiles/tile16.png",
       title: "Toxic Relationship",
       text: (
         <ul>
@@ -192,7 +208,8 @@ const App = () => {
       ),
     },
     {
-      index: 17, image: './tiles/tile17.png',
+      index: 17,
+      image: "./tiles/tile17.png",
       title: "Who Sharded?",
       text: (
         <ul>
@@ -202,7 +219,8 @@ const App = () => {
       ),
     },
     {
-      index: 18, image: './tiles/tile18.png',
+      index: 18,
+      image: "./tiles/tile18.png",
       title: "Plunderin' Booty",
       text: (
         <ul>
@@ -217,7 +235,8 @@ const App = () => {
       ),
     },
     {
-      index: 19, image: './tiles/tile19.png',
+      index: 19,
+      image: "./tiles/tile19.png",
       title: "Elemental Elegance",
       text: (
         <ul>
@@ -228,7 +247,8 @@ const App = () => {
       ),
     },
     {
-      index: 20, image: './tiles/tile20.png',
+      index: 20,
+      image: "./tiles/tile20.png",
       title: "Tombs of Amascut",
       text: (
         <ul>
@@ -237,7 +257,8 @@ const App = () => {
       ),
     },
     {
-      index: 21, image: './tiles/tile21.png',
+      index: 21,
+      image: "./tiles/tile21.png",
       title: "Weaponized Moontism",
       text: (
         <ul>
@@ -248,7 +269,8 @@ const App = () => {
       ),
     },
     {
-      index: 22, image: './tiles/tile22.png',
+      index: 22,
+      image: "./tiles/tile22.png",
       title: "Phantom Dancer",
       text: (
         <ul>
@@ -257,7 +279,8 @@ const App = () => {
       ),
     },
     {
-      index: 23, image: './tiles/tile23.png',
+      index: 23,
+      image: "./tiles/tile23.png",
       title: "Gryphon Tamer",
       text: (
         <ul>
@@ -266,7 +289,8 @@ const App = () => {
       ),
     },
     {
-      index: 24, image: './tiles/tile24.png',
+      index: 24,
+      image: "./tiles/tile24.png",
       title: "Skills Master",
       text: (
         <ul>
@@ -281,7 +305,8 @@ const App = () => {
       ),
     },
     {
-      index: 25, image: './tiles/tile25.png',
+      index: 25,
+      image: "./tiles/tile25.png",
       title: "Bob Ross",
       text: (
         <ul>
@@ -290,7 +315,8 @@ const App = () => {
       ),
     },
     {
-      index: 26, image: './tiles/tile26.png',
+      index: 26,
+      image: "./tiles/tile26.png",
       title: "Brothers Brawl",
       text: (
         <ul>
@@ -299,7 +325,8 @@ const App = () => {
       ),
     },
     {
-      index: 27, image: './tiles/tile27.png',
+      index: 27,
+      image: "./tiles/tile27.png",
       title: "King of the Rats",
       text: (
         <ul>
@@ -309,7 +336,8 @@ const App = () => {
       ),
     },
     {
-      index: 28, image: './tiles/tile28.png',
+      index: 28,
+      image: "./tiles/tile28.png",
       title: "Freaky Forester",
       text: (
         <ul>
@@ -319,7 +347,8 @@ const App = () => {
       ),
     },
     {
-      index: 29, image: './tiles/tile29.png',
+      index: 29,
+      image: "./tiles/tile29.png",
       title: "Medieval Meleer",
       text: (
         <ul>
@@ -330,7 +359,8 @@ const App = () => {
       ),
     },
     {
-      index: 30, image: './tiles/tile30.png',
+      index: 30,
+      image: "./tiles/tile30.png",
       title: "FeelsBadMan",
       text: (
         <ul>
@@ -339,7 +369,7 @@ const App = () => {
           <li>Long bone</li>
         </ul>
       ),
-    }
+    },
   ];
 
   const [tiles, setTiles] = useState(bingoItems);
@@ -462,22 +492,25 @@ const App = () => {
     const newTiles = [...bingoItems];
     [newTiles[idx1], newTiles[idx2]] = [newTiles[idx2], newTiles[idx1]];
     setTiles(newTiles);
-    console.log(newTiles)
+    console.log(newTiles);
   };
 
   const saveAsImage = async () => {
     if (!gridRef.current) return;
 
     try {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      const rect = gridRef.current.getBoundingClientRect();
+      // Dynamically import html2canvas
+      const html2canvas =
+        (await import("https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm"))
+          .default;
 
-      canvas.width = rect.width * 2;
-      canvas.height = rect.height * 2;
-
-      ctx.fillStyle = "#0F0F0F";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const canvas = await html2canvas(gridRef.current, {
+        backgroundColor: "#0F0F0F",
+        scale: 2,
+        logging: false,
+        useCORS: true,
+        allowTaint: true,
+      });
 
       const link = document.createElement("a");
       link.download = "zerk-team-bingo.png";
