@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://0X0102012210.github.io/Zerk-Team-Bingo",
+  "homepage": "https://0X01-OSRS.github.io/Zerk-Team-Bingo",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
