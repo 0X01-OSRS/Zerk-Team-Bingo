@@ -210,7 +210,7 @@ export const bingoItems = [
         title: "Plunderin' Booty",
         text: (
             <ul>
-                <li>Tiny pearl</li>
+                <li>Giant clam pearl</li>
                 <li>Ray barbs</li>
                 <li>Swift albatross feather</li>
                 <li>Echo pearl</li>
