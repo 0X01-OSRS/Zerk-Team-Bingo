@@ -235,7 +235,8 @@ const App = () => {
                       boxShadow: "3px 3px 0px black",
                     }}
                     onMouseEnter={() => setHoveredSquare(`row-${rowIndex}`)}
-                    onMouseLeave={() => setHoveredSquare(null)}
+                    onMouseLeave={() =>
+                      setHoveredSquare(null)}
                   />
                 );
               })}
@@ -345,7 +346,7 @@ const App = () => {
                 ? (
                   <div className="text-center">
                     <h3
-                      className="text-2xl font-semibold mb-4"
+                      className="text-3xl font-semibold mb-4"
                       style={{
                         color: "#FFCF3F",
                         textShadow: "2px 2px 0px black",
@@ -361,7 +362,7 @@ const App = () => {
                       ][parseInt(hoveredSquare.split("-")[1])]}
                     </h3>
                     <div
-                      className="text-base"
+                      className="text-xl"
                       style={{
                         color: "#FFCF3F",
                         textShadow: "2px 2px 0px black",
@@ -381,7 +382,7 @@ const App = () => {
                 : (
                   <div className="text-center">
                     <h3
-                      className="text-2xl font-semibold mb-2"
+                      className="text-3xl font-semibold mb-2"
                       style={{
                         color: "#FFCF3F",
                         textShadow: "2px 2px 0px black",
@@ -390,7 +391,7 @@ const App = () => {
                       {tiles[hoveredSquare].title}
                     </h3>
                     <div
-                      className="text-lg"
+                      className="text-xl"
                       style={{
                         color: "#FFCF3F",
                         textShadow: "2px 2px 0px black",
@@ -428,7 +429,9 @@ const App = () => {
               }
             }}
             onMouseLeave={(e) => {
-              if (!isRolling) e.target.style.backgroundColor = "#FF6B35";
+              if (!isRolling) {
+                e.target.style.backgroundColor = "#FF6B35";
+              }
             }}
           >
             🎲 {isRolling ? "Rolling..." : "Roll Random Tile"}
