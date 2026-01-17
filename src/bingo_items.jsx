@@ -308,8 +308,8 @@ export const bingoItems = [
         title: "Brothers Brawl",
         text: (
             <ul>
-                <li>Full set of Barrows armor</li>
-                <li>(any helm/chest/legs,</li>
+                <li>Full Barrows set</li>
+                <li>(any helm/chest/legs/weapon,</li>
                 <li>mix & match <span style='color:white'>is allowed</span>)</li>
             </ul>
         ),
