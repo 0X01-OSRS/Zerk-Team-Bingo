@@ -78,7 +78,7 @@ export const bingoItems = [
         text: (
             <ul>
                 <li>Torva armor piece</li>
-                <li>Bandos armor piece (excluding Bandos boots)</li>
+                <li>Bandos armor piece (Bandos boots <span style='color:white'>are allowed</span>)</li>
             </ul>
         ),
     },
@@ -200,7 +200,7 @@ export const bingoItems = [
         text: (
             <ul>
                 <li>Any Godsword hilt</li>
-                <li>3 unique Godsword shards</li>
+                <li>All 3 Godsword shards</li>
             </ul>
         ),
     },
