@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+/* @font-face {
+  font-family: 'RunescapeSmall';
+  src: url('assets/fonts/runescape_small.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RunescapeChat';
+  src: url('assets/fonts/RuneScape-Chat-07.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RunescapeLarge';
+  src: url('assets/fonts/runescape_large.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+} */
+
 :root {
   --osrs-yellow: #FFCF3F;
   --osrs-gold: #E6A519;
@@ -15,6 +36,19 @@
   --osrs-panel: #46433A;
 }
 
+body {
+  /* font-family: 'RunescapeChat'; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Serif';
+}
+
 .aspect-square:hover {
   /* outlineWidth: "2px",
                     outlineColor: "#000000" */
@@ -25,7 +59,7 @@
 .or {
   font-weight: bold;
   text-decoration: underline;
-  color:white;
+  color: white;
   font-style: italic;
   list-style-type: none;
 }

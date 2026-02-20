@@ -204,7 +204,7 @@ const App = () => {
       <div className="max-w-7xl mx-auto">
         <h1
           className="text-4xl font-bold text-center mb-2"
-          style={{ fontFamily: "serif", color: "#FFCF3F" }}
+          style={{fontFamily:"serif", color: "#FFCF3F",textShadow:"3px 3px 0 black" }}
         >
           Zerk Team Bingo
         </h1>
@@ -304,7 +304,7 @@ const App = () => {
                       className="absolute top-1 left-1 text-sm font-bold"
                       style={{
                         color: "#FFCF3F",
-                        textShadow: "2px 2px 0px black",
+                        textShadow: "1px 1px 0px black",
                       }}
                     >
                       {item.index}
