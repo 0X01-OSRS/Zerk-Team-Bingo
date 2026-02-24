@@ -571,12 +571,12 @@ const App = () => {
               Drop Checklist
             </h2>
             <div className="flex items-center gap-4">
-              <span style={{ color: "#00FFFF" }} className="text-sm">
+              <span style={{ color: "#00FFFF" }} className="text-md">
                 {tilesCompleteByChecklist} / {totalTiles} tiles complete
               </span>
               <button
                 onClick={() => setCheckedItems({})}
-                className="text-sm font-bold py-1 px-3"
+                className="text-md font-bold py-1 px-3"
                 style={{
                   backgroundColor: "#694D23",
                   color: "#FFCF3F",
@@ -639,7 +639,7 @@ const App = () => {
                   {/* Tile header */}
                   <div className="flex items-center gap-2 mb-2">
                     <span
-                      className="text-sm font-bold px-1"
+                      className="text-md font-bold px-1"
                       style={{
                         backgroundColor: "#694D23",
                         color: "#FFCF3F",
@@ -650,14 +650,14 @@ const App = () => {
                       {tile.index}
                     </span>
                     <span
-                      className="font-bold text-sm"
+                      className="font-bold text-md"
                       style={{ color: "#FFCF3F", textShadow: "1px 1px 0 black" }}
                     >
                       {tile.title}
                     </span>
                     {tileComplete && (
                       <span
-                        className="ml-auto text-sm font-bold px-1"
+                        className="ml-auto text-md font-bold px-1"
                         style={{ color: "#00FF00", textShadow: "0 0 6px #00FF00" }}
                       >
                         ✓ COMPLETE
@@ -665,7 +665,7 @@ const App = () => {
                     )}
                     {!tileComplete && checkableItems.length > 0 && (
                       <span
-                        className="ml-auto text-sm"
+                        className="ml-auto text-md"
                         style={{ color: checklistDone ? "#00FF00" : "#00FFFF" }}
                       >
                         {tileChecked}/{required}
@@ -691,7 +691,7 @@ const App = () => {
                         return (
                           <div
                             key={`h-${rawIndex}`}
-                            className="text-sm"
+                            className="text-md"
                             style={{ color: "white", paddingLeft: "4px" }}
                           >
                             Choose 3:
@@ -735,7 +735,7 @@ const App = () => {
                           </div>
                           <span
                             onClick={() => toggleItem(tileIndex, checkableIndex)}
-                            className="text-sm"
+                            className="text-md"
                             style={{
                               color: isChecked ? "#888" : "#FFCF3F",
                               textDecoration: isChecked ? "line-through" : "none",
