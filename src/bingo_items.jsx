@@ -191,12 +191,12 @@ export const bingoItems = [
         image: "./tiles/tile14.png",
         title: "Lesser of Two Evils",
         requiredCount: 1,
-        items: ["Nightmare unique", "OR", "Yama unique"],
+        items: ["Nightmare: weapon piece or armor piece", "OR", "Yama: Soulflame horn or Oathplate armor"],
         text: (
             <ul>
-                <li>Nightmare unique</li>
+                <li>Nightmare: weapon piece or armor piece</li>
                 <li className="or">OR</li>
-                <li>Yama unique</li>
+                <li>Yama: Soulflame horn or Oathplate armor</li>
             </ul>
         ),
     },
