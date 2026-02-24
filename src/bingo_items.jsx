@@ -3,6 +3,8 @@ export const bingoItems = [
         index: 1,
         image: "./tiles/tile1.png",
         title: "Venomous Jeweler",
+        requiredCount: 3,
+        items: ["Araxyte fang", "Onyx", "Zenyte shard"],
         text: (
             <ul>
                 <li>Araxyte fang</li>
@@ -15,6 +17,8 @@ export const bingoItems = [
         index: 2,
         image: "./tiles/tile2.png",
         title: "Catch These Hands",
+        requiredCount: 3,
+        items: ["Mokhaiotl cloth", "Onyx", "Zenyte shard"],
         text: (
             <ul>
                 <li>Mokhaiotl cloth</li>
@@ -27,6 +31,8 @@ export const bingoItems = [
         index: 3,
         image: "./tiles/tile3.png",
         title: "Demonic Arsenal",
+        requiredCount: 3,
+        items: ["Any abyssal weapon", "Tormented synapse", "Eye of ayak"],
         text: (
             <ul>
                 <li>Any abyssal weapon</li>
@@ -39,6 +45,8 @@ export const bingoItems = [
         index: 4,
         image: "./tiles/tile4.png",
         title: "Eternal Love",
+        requiredCount: 1,
+        items: ["Imbued heart", "OR", "Eternal gem"],
         text: (
             <ul>
                 <li>Imbued heart</li>
@@ -51,6 +59,8 @@ export const bingoItems = [
         index: 5,
         image: "./tiles/tile5.png",
         title: "Triple Double",
+        requiredCount: 4,
+        items: ["Tonalztics of ralos", "Dark bow", "Fire element staff crown", "Ice element staff crown"],
         text: (
             <ul>
                 <li>Tonalztics of ralos</li>
@@ -64,6 +74,8 @@ export const bingoItems = [
         index: 6,
         image: "./tiles/tile6.png",
         title: "Ranged Fortification",
+        requiredCount: 2,
+        items: ["Masori armor piece", "Armadyl armor piece"],
         text: (
             <ul>
                 <li>Masori armor piece</li>
@@ -75,6 +87,8 @@ export const bingoItems = [
         index: 7,
         image: "./tiles/tile7.png",
         title: "Melee Fortification",
+        requiredCount: 2,
+        items: ["Torva armor piece", "Bandos armor piece (Bandos boots are allowed)"],
         text: (
             <ul>
                 <li>Torva armor piece</li>
@@ -86,6 +100,8 @@ export const bingoItems = [
         index: 8,
         image: "./tiles/tile8.png",
         title: "What Was That?",
+        requiredCount: 3,
+        items: ["Bandos boots", "Black tourmaline core", "Echo crystal"],
         text: (
             <ul>
                 <li>Bandos boots</li>
@@ -98,6 +114,8 @@ export const bingoItems = [
         index: 9,
         image: "./tiles/tile9.png",
         title: "The Lizard Sticker",
+        requiredCount: 2,
+        items: ["Zamorakian spear", "Hydra's claw"],
         text: (
             <ul>
                 <li>Zamorakian spear</li>
@@ -109,6 +127,8 @@ export const bingoItems = [
         index: 10,
         image: "./tiles/tile10.png",
         title: "Theatre of Blood",
+        requiredCount: 1,
+        items: ["2 purples from Theatre of Blood"],
         text: (
             <ul>
                 <li>2 purples from Theatre of Blood</li>
@@ -119,6 +139,8 @@ export const bingoItems = [
         index: 11,
         image: "./tiles/tile11.png",
         title: "Hellhound's Heels",
+        requiredCount: 2,
+        items: ["Pegasian crystal", "Ranger boots", "OR", "Eternal crystal", "Infinity boots", "OR", "Primordial crystal", "Dragon boots"],
         text: (
             <ul>
                 <li>Pegasian crystal</li>
@@ -136,6 +158,8 @@ export const bingoItems = [
         index: 12,
         image: "./tiles/tile12.png",
         title: "Lord of the Bling",
+        requiredCount: 2,
+        items: ["DT2 Vestige", "Matching DK ring"],
         text: (
             <ul>
                 <li>DT2 Vestige</li>
@@ -147,6 +171,8 @@ export const bingoItems = [
         index: 13,
         image: "./tiles/tile13.png",
         title: "Risk Assessment",
+        requiredCount: 2,
+        items: ["Craw's bow", "Fangs of venenatis", "OR", "Viggora's chainmace", "Claws of callisto", "OR", "Thammaron's sceptre", "Skull of vet'ion"],
         text: (
             <ul>
                 <li>Craw's bow</li>
@@ -164,6 +190,8 @@ export const bingoItems = [
         index: 14,
         image: "./tiles/tile14.png",
         title: "Lesser of Two Evils",
+        requiredCount: 1,
+        items: ["Nightmare unique", "OR", "Yama unique"],
         text: (
             <ul>
                 <li>Nightmare unique</li>
@@ -176,6 +204,8 @@ export const bingoItems = [
         index: 15,
         image: "./tiles/tile15.png",
         title: "Chambers of Xeric",
+        requiredCount: 1,
+        items: ["2 purples from Chambers of Xeric"],
         text: (
             <ul>
                 <li>2 purples from Chambers of Xeric</li>
@@ -186,6 +216,8 @@ export const bingoItems = [
         index: 16,
         image: "./tiles/tile16.png",
         title: "Toxic Relationship",
+        requiredCount: 2,
+        items: ["Staff of the dead", "Magic fang"],
         text: (
             <ul>
                 <li>Staff of the dead</li>
@@ -197,6 +229,8 @@ export const bingoItems = [
         index: 17,
         image: "./tiles/tile17.png",
         title: "Who Sharded?",
+        requiredCount: 2,
+        items: ["Any Godsword hilt", "All 3 Godsword shards"],
         text: (
             <ul>
                 <li>Any Godsword hilt</li>
@@ -208,6 +242,8 @@ export const bingoItems = [
         index: 18,
         image: "./tiles/tile18.png",
         title: "Plunderin' Booty",
+        requiredCount: 7,
+        items: ["Giant clam pearl", "Ray barbs", "Swift albatross feather", "Echo pearl", "Narwhal horn", "Dragon metal sheet", "Dragon nails"],
         text: (
             <ul>
                 <li>Giant clam pearl</li>
@@ -224,6 +260,8 @@ export const bingoItems = [
         index: 19,
         image: "./tiles/tile19.png",
         title: "Elemental Elegance",
+        requiredCount: 3,
+        items: ["Tome of fire", "Tome of water", "Tome of earth"],
         text: (
             <ul>
                 <li>Tome of fire</li>
@@ -236,6 +274,8 @@ export const bingoItems = [
         index: 20,
         image: "./tiles/tile20.png",
         title: "Tombs of Amascut",
+        requiredCount: 1,
+        items: ["2 purples from Tombs of Amascut"],
         text: (
             <ul>
                 <li>2 purples from Tombs of Amascut</li>
@@ -246,6 +286,8 @@ export const bingoItems = [
         index: 21,
         image: "./tiles/tile21.png",
         title: "Weaponized Moontism",
+        requiredCount: 3,
+        items: ["Dual macuahuitl", "Eclipse atlatl", "Blue moon spear"],
         text: (
             <ul>
                 <li>Dual macuahuitl</li>
@@ -258,6 +300,8 @@ export const bingoItems = [
         index: 22,
         image: "./tiles/tile22.png",
         title: "Phantom Dancer",
+        requiredCount: 1,
+        items: ["3 Venator shards"],
         text: (
             <ul>
                 <li>3 Venator shards</li>
@@ -268,6 +312,8 @@ export const bingoItems = [
         index: 23,
         image: "./tiles/tile23.png",
         title: "Gryphon Tamer",
+        requiredCount: 1,
+        items: ["Belle's folly"],
         text: (
             <ul>
                 <li>Belle's folly</li>
@@ -278,6 +324,8 @@ export const bingoItems = [
         index: 24,
         image: "./tiles/tile24.png",
         title: "Skills Master",
+        requiredCount: 3,
+        items: ["Choose 3:", "Fletching knife", "Tackle box", "Fish barrel", "Bruma torch", "Strange old lockpick", "Imcando hammer"],
         text: (
             <ul>
                 <li style={{ color: "white" }}>Choose 3:</li>
@@ -294,6 +342,8 @@ export const bingoItems = [
         index: 25,
         image: "./tiles/tile25.png",
         title: "Bob Ross",
+        requiredCount: 1,
+        items: ["3 tradeable boat paints (excluding Merchant's paint, dupes allowed)"],
         text: (
             <ul>
                 <li>3 tradeable boat paints</li>
@@ -306,6 +356,8 @@ export const bingoItems = [
         index: 26,
         image: "./tiles/tile26.png",
         title: "Brothers Brawl",
+        requiredCount: 1,
+        items: ["Full Barrows set (any helm/chest/legs/weapon, mix & match allowed)"],
         text: (
             <ul>
                 <li>Full Barrows set</li>
@@ -318,6 +370,8 @@ export const bingoItems = [
         index: 27,
         image: "./tiles/tile27.png",
         title: "King of the Rats",
+        requiredCount: 2,
+        items: ["Brine sabre", "3 Scurrius' spines"],
         text: (
             <ul>
                 <li>Brine sabre</li>
@@ -329,6 +383,8 @@ export const bingoItems = [
         index: 28,
         image: "./tiles/tile28.png",
         title: "Freaky Forester",
+        requiredCount: 2,
+        items: ["Golden pheasant egg", "Fox whistle"],
         text: (
             <ul>
                 <li>Golden pheasant egg</li>
@@ -340,6 +396,8 @@ export const bingoItems = [
         index: 29,
         image: "./tiles/tile29.png",
         title: "Medieval Meleer",
+        requiredCount: 3,
+        items: ["Sulphur blades", "Glacial temotli", "Earthbound tecpatl"],
         text: (
             <ul>
                 <li>Sulphur blades</li>
@@ -352,6 +410,8 @@ export const bingoItems = [
         index: 30,
         image: "./tiles/tile30.png",
         title: "FeelsBadMan",
+        requiredCount: 3,
+        items: ["Champion scroll", "Curved bone", "Long bone"],
         text: (
             <ul>
                 <li>Champion scroll</li>

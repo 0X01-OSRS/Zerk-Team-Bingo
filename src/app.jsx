@@ -11,6 +11,8 @@ const App = () => {
   const [selectedTile, setSelectedTile] = useState(null);
   const [swapTile1, setSwapTile1] = useState("");
   const [swapTile2, setSwapTile2] = useState("");
+  // checkedItems: { "tileIndex-itemIndex": true }
+  const [checkedItems, setCheckedItems] = useState({});
   const gridRef = useRef(null);
   const rollIntervalRef = useRef(null);
 
@@ -21,6 +23,7 @@ const App = () => {
     const stateParam = params.get("state");
     const swap1Param = params.get("swap1");
     const swap2Param = params.get("swap2");
+    const checkParam = params.get("checks");
 
     if (stateParam) {
       try {
@@ -55,6 +58,15 @@ const App = () => {
         setTiles(newTiles);
       }
     }
+
+    if (checkParam) {
+      try {
+        const decoded = JSON.parse(atob(checkParam));
+        setCheckedItems(decoded);
+      } catch (e) {
+        console.error("Error parsing checks from URL:", e);
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -85,8 +97,14 @@ const App = () => {
       url.searchParams.delete("swap2");
     }
 
+    if (Object.keys(checkedItems).length > 0) {
+      url.searchParams.set("checks", btoa(JSON.stringify(checkedItems)));
+    } else {
+      url.searchParams.delete("checks");
+    }
+
     window.history.replaceState({}, "", url);
-  }, [clickedSquares, swapTile1, swapTile2]);
+  }, [clickedSquares, swapTile1, swapTile2, checkedItems]);
 
   const toggleSquare = (index) => {
     setClickedSquares((prev) => {
@@ -97,6 +115,19 @@ const App = () => {
         newSet.add(index);
       }
       return newSet;
+    });
+  };
+
+  const toggleItem = (tileIndex, itemIndex) => {
+    const key = `${tileIndex}-${itemIndex}`;
+    setCheckedItems((prev) => {
+      const next = { ...prev };
+      if (next[key]) {
+        delete next[key];
+      } else {
+        next[key] = true;
+      }
+      return next;
     });
   };
 
@@ -199,6 +230,15 @@ const App = () => {
     rollIntervalRef.current = setInterval(roll, baseSpeed);
   };
 
+  // Total checklist progress — count tiles where checked items >= requiredCount
+  const tilesCompleteByChecklist = tiles.filter((tile, tileIndex) => {
+    const required = tile.requiredCount || 0;
+    const checkableItems = (tile.items || []).filter(i => i !== "OR" && i !== "Choose 3:");
+    const checked = checkableItems.filter((_, i) => checkedItems[`${tileIndex}-${i}`]).length;
+    return checked >= required;
+  }).length;
+  const totalTiles = tiles.length;
+
   return (
     <div className="min-h-screen p-8" style={{ backgroundColor: "#2E2C29" }}>
       <div className="max-w-7xl mx-auto">
@@ -256,7 +296,6 @@ const App = () => {
             >
               {tiles.map((item, index) => {
                 const isClicked = clickedSquares.has(index);
-
                 return (
                   <div
                     key={index}
@@ -502,6 +541,199 @@ const App = () => {
           >
             Reset
           </button>
+        </div>
+
+        {/* ── Granular Checklist ── */}
+        <div className="mt-10">
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+            <h2
+              className="text-2xl font-bold"
+              style={{ fontFamily: "serif", color: "#FFCF3F", textShadow: "2px 2px 0 black" }}
+            >
+              Drop Checklist
+            </h2>
+            <div className="flex items-center gap-4">
+              <span style={{ color: "#00FFFF" }} className="text-sm">
+                {tilesCompleteByChecklist} / {totalTiles} tiles complete
+              </span>
+              <button
+                onClick={() => setCheckedItems({})}
+                className="text-sm font-bold py-1 px-3"
+                style={{
+                  backgroundColor: "#694D23",
+                  color: "#FFCF3F",
+                  cursor: "pointer",
+                  border: "1px solid #474745",
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = "#8B6330"}
+                onMouseLeave={(e) => e.target.style.backgroundColor = "#694D23"}
+              >
+                Clear All
+              </button>
+            </div>
+          </div>
+
+          {/* Progress bar */}
+          <div
+            className="w-full mb-6"
+            style={{
+              height: "8px",
+              backgroundColor: "#46433A",
+              border: "1px solid #474745",
+            }}
+          >
+            <div
+              style={{
+                height: "100%",
+                width: `${totalTiles > 0 ? (tilesCompleteByChecklist / totalTiles) * 100 : 0}%`,
+                backgroundColor: "#00FF00",
+                transition: "width 0.3s ease",
+                boxShadow: "0 0 8px #00FF00",
+              }}
+            />
+          </div>
+
+          <div
+            className="grid gap-3"
+            style={{ gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}
+          >
+            {tiles.map((tile, tileIndex) => {
+              const checkableItems = (tile.items || []).filter(
+                (item) => item !== "OR" && item !== "Choose 3:"
+              );
+              const tileChecked = checkableItems.filter(
+                (_, i) => checkedItems[`${tileIndex}-${i}`]
+              ).length;
+              const required = tile.requiredCount || checkableItems.length;
+              const checklistDone = tileChecked >= required;
+              const tileComplete = clickedSquares.has(tileIndex);
+
+              return (
+                <div
+                  key={tileIndex}
+                  style={{
+                    backgroundColor: "#46433A",
+                    border: `2px solid ${tileComplete ? "#E6A519" : checklistDone ? "#00AA00" : "#474745"}`,
+                    padding: "12px",
+                    position: "relative",
+                  }}
+                >
+                  {/* Tile header */}
+                  <div className="flex items-center gap-2 mb-2">
+                    <span
+                      className="text-xs font-bold px-1"
+                      style={{
+                        backgroundColor: "#694D23",
+                        color: "#FFCF3F",
+                        minWidth: "22px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {tile.index}
+                    </span>
+                    <span
+                      className="font-bold text-sm"
+                      style={{ color: "#FFCF3F", textShadow: "1px 1px 0 black" }}
+                    >
+                      {tile.title}
+                    </span>
+                    {tileComplete && (
+                      <span
+                        className="ml-auto text-xs font-bold px-1"
+                        style={{ color: "#00FF00", textShadow: "0 0 6px #00FF00" }}
+                      >
+                        ✓ COMPLETE
+                      </span>
+                    )}
+                    {!tileComplete && checkableItems.length > 0 && (
+                      <span
+                        className="ml-auto text-xs"
+                        style={{ color: checklistDone ? "#00FF00" : "#00FFFF" }}
+                      >
+                        {tileChecked}/{required}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Item checkboxes */}
+                  <div className="flex flex-col gap-1">
+                    {(tile.items || []).map((item, rawIndex) => {
+                      if (item === "OR") {
+                        return (
+                          <div
+                            key={`or-${rawIndex}`}
+                            className="text-xs font-bold italic underline"
+                            style={{ color: "white", listStyle: "none", paddingLeft: "4px" }}
+                          >
+                            OR
+                          </div>
+                        );
+                      }
+                      if (item === "Choose 3:") {
+                        return (
+                          <div
+                            key={`h-${rawIndex}`}
+                            className="text-xs"
+                            style={{ color: "white", paddingLeft: "4px" }}
+                          >
+                            Choose 3:
+                          </div>
+                        );
+                      }
+
+                      // figure out the checkable index (skip OR / Choose 3:)
+                      const checkableIndex = (tile.items || [])
+                        .slice(0, rawIndex + 1)
+                        .filter(i => i !== "OR" && i !== "Choose 3:")
+                        .length - 1;
+
+                      const key = `${tileIndex}-${checkableIndex}`;
+                      const isChecked = !!checkedItems[key];
+
+                      return (
+                        <label
+                          key={key}
+                          className="flex items-center gap-2 cursor-pointer group"
+                          style={{ userSelect: "none" }}
+                        >
+                          <div
+                            onClick={() => toggleItem(tileIndex, checkableIndex)}
+                            style={{
+                              width: "16px",
+                              height: "16px",
+                              minWidth: "16px",
+                              border: `2px solid ${isChecked ? "#00FF00" : "#694D23"}`,
+                              backgroundColor: isChecked ? "#00AA00" : "transparent",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              cursor: "pointer",
+                              transition: "all 0.15s",
+                            }}
+                          >
+                            {isChecked && (
+                              <span style={{ color: "#0F0F0F", fontSize: "11px", fontWeight: "bold" }}>✓</span>
+                            )}
+                          </div>
+                          <span
+                            onClick={() => toggleItem(tileIndex, checkableIndex)}
+                            className="text-sm"
+                            style={{
+                              color: isChecked ? "#888" : "#FFCF3F",
+                              textDecoration: isChecked ? "line-through" : "none",
+                              transition: "all 0.15s",
+                            }}
+                          >
+                            {item}
+                          </span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
