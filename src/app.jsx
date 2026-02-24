@@ -639,7 +639,7 @@ const App = () => {
                   {/* Tile header */}
                   <div className="flex items-center gap-2 mb-2">
                     <span
-                      className="text-xs font-bold px-1"
+                      className="text-sm font-bold px-1"
                       style={{
                         backgroundColor: "#694D23",
                         color: "#FFCF3F",
@@ -657,7 +657,7 @@ const App = () => {
                     </span>
                     {tileComplete && (
                       <span
-                        className="ml-auto text-xs font-bold px-1"
+                        className="ml-auto text-sm font-bold px-1"
                         style={{ color: "#00FF00", textShadow: "0 0 6px #00FF00" }}
                       >
                         ✓ COMPLETE
@@ -665,7 +665,7 @@ const App = () => {
                     )}
                     {!tileComplete && checkableItems.length > 0 && (
                       <span
-                        className="ml-auto text-xs"
+                        className="ml-auto text-sm"
                         style={{ color: checklistDone ? "#00FF00" : "#00FFFF" }}
                       >
                         {tileChecked}/{required}
@@ -680,7 +680,7 @@ const App = () => {
                         return (
                           <div
                             key={`or-${rawIndex}`}
-                            className="text-xs font-bold italic underline"
+                            className="font-bold italic underline"
                             style={{ color: "white", listStyle: "none", paddingLeft: "4px" }}
                           >
                             OR
@@ -691,7 +691,7 @@ const App = () => {
                         return (
                           <div
                             key={`h-${rawIndex}`}
-                            className="text-xs"
+                            className="text-sm"
                             style={{ color: "white", paddingLeft: "4px" }}
                           >
                             Choose 3:
@@ -730,7 +730,7 @@ const App = () => {
                             }}
                           >
                             {isChecked && (
-                              <span style={{ color: "#0F0F0F", fontSize: "11px", fontWeight: "bold" }}>✓</span>
+                              <span style={{ color: "#0F0F0F", fontSize: "14px", fontWeight: "bold" }}>✓</span>
                             )}
                           </div>
                           <span
