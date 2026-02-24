@@ -127,6 +127,24 @@ const App = () => {
       } else {
         next[key] = true;
       }
+
+      // Sync board: mark tile complete if checklist threshold is met
+      const tile = tiles[tileIndex];
+      const required = tile.requiredCount || 0;
+      const checkableItems = (tile.items || []).filter(i => i !== "OR" && i !== "Choose 3:");
+      const checkedCount = checkableItems.filter((_, i) => next[`${tileIndex}-${i}`]).length;
+      const nowDone = checkedCount >= required;
+
+      setClickedSquares((prev) => {
+        const newSet = new Set(prev);
+        if (nowDone) {
+          newSet.add(tileIndex);
+        } else {
+          newSet.delete(tileIndex);
+        }
+        return newSet;
+      });
+
       return next;
     });
   };
