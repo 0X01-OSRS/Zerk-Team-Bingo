@@ -109,11 +109,35 @@ const App = () => {
   const toggleSquare = (index) => {
     setClickedSquares((prev) => {
       const newSet = new Set(prev);
-      if (newSet.has(index)) {
+      const wasChecked = newSet.has(index);
+      if (wasChecked) {
         newSet.delete(index);
       } else {
         newSet.add(index);
       }
+
+      // Sync checklist items with the tile's new state
+      const tile = tiles[index];
+      const checkableItems = (tile.items || []).filter(
+        (i) => i !== "OR" && i !== "Choose 3:"
+      );
+
+      setCheckedItems((prevChecked) => {
+        const next = { ...prevChecked };
+        if (!wasChecked) {
+          // Tile being marked complete — check all items
+          checkableItems.forEach((_, i) => {
+            next[`${index}-${i}`] = true;
+          });
+        } else {
+          // Tile being unchecked — clear all its items
+          checkableItems.forEach((_, i) => {
+            delete next[`${index}-${i}`];
+          });
+        }
+        return next;
+      });
+
       return newSet;
     });
   };
