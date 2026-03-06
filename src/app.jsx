@@ -61,8 +61,29 @@ const App = () => {
 
     if (checkParam) {
       try {
-        const decoded = JSON.parse(atob(checkParam));
-        setCheckedItems(decoded);
+        // New format: base64 of packed bytes (1 byte per tile, 1 bit per checkable item)
+        const raw = atob(checkParam);
+        // Detect old JSON format (starts with '{')
+        if (raw.startsWith("{")) {
+          const decoded = JSON.parse(raw);
+          setCheckedItems(decoded);
+        } else {
+          const newChecked = {};
+          for (let tileIndex = 0; tileIndex < raw.length; tileIndex++) {
+            const byte = raw.charCodeAt(tileIndex);
+            const tile = bingoItems[tileIndex];
+            if (!tile) continue;
+            const checkableItems = (tile.items || []).filter(
+              (i) => i !== "OR" && i !== "Choose 3:"
+            );
+            checkableItems.forEach((_, itemIndex) => {
+              if (byte & (1 << itemIndex)) {
+                newChecked[`${tileIndex}-${itemIndex}`] = true;
+              }
+            });
+          }
+          setCheckedItems(newChecked);
+        }
       } catch (e) {
         console.error("Error parsing checks from URL:", e);
       }
@@ -98,7 +119,25 @@ const App = () => {
     }
 
     if (Object.keys(checkedItems).length > 0) {
-      url.searchParams.set("checks", btoa(JSON.stringify(checkedItems)));
+      // Pack 1 byte per tile: each bit = one checkable item
+      const bytes = tiles.map((tile, tileIndex) => {
+        const checkableItems = (tile.items || []).filter(
+          (i) => i !== "OR" && i !== "Choose 3:"
+        );
+        let byte = 0;
+        checkableItems.forEach((_, itemIndex) => {
+          if (checkedItems[`${tileIndex}-${itemIndex}`]) {
+            byte |= 1 << itemIndex;
+          }
+        });
+        return byte;
+      });
+      // Trim trailing zero bytes to keep URL short when few tiles have checks
+      let lastNonZero = bytes.length - 1;
+      while (lastNonZero >= 0 && bytes[lastNonZero] === 0) lastNonZero--;
+      const trimmed = bytes.slice(0, lastNonZero + 1);
+      const encoded = btoa(String.fromCharCode(...trimmed));
+      url.searchParams.set("checks", encoded);
     } else {
       url.searchParams.delete("checks");
     }
